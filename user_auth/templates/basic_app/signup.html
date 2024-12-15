@@ -1,0 +1,22 @@
+{% extends "basic_app/base.html" %}
+
+{% block body_block %}
+    {% if signedup %}
+        <div class="container">
+            <h3>Thank you for registering !</h3>
+        </div>
+    {% else %}
+        <div class="container">
+            <h2>Fill The Form </h2>
+            <ul>
+                <li> {{ user_form.errors  }} {{profile_form.errors}}</li>
+            </ul>
+            <form method="post">
+                {% csrf_token %}
+                {{ user_form.as_p}}
+                {{ profile_form.as_p}}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}
